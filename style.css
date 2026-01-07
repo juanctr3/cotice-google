@@ -1,1 +1,136 @@
+/*
+Theme Name: Catice Google Theme
+Author: Tu Asistente IA
+Description: Tema minimalista optimizado para SEO estilo buscador.
+Version: 1.0
+*/
 
+/* --- RESET & BASICS --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    background-color: #fff;
+    color: #202124;
+    font-size: 14px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a { text-decoration: none; color: #1a0dab; }
+a:hover { text-decoration: underline; }
+
+/* --- HEADER (Barra superior) --- */
+.site-header {
+    padding: 20px 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.site-header a {
+    color: #5f6368;
+    margin-left: 15px;
+    font-size: 13px;
+}
+.site-header a:hover { color: #202124; text-decoration: underline; }
+
+/* --- MAIN CONTAINER (Centro) --- */
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centrado vertical estilo Google */
+    padding: 20px;
+    width: 100%;
+}
+
+/* Logo Estilo Caticefacil */
+.brand-logo {
+    font-size: 80px; /* Tamaño grande */
+    font-weight: bold;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #202124;
+}
+
+/* Colores estilo Google para las letras (Opcional) */
+.brand-logo span:nth-child(1) { color: #4285f4; }
+.brand-logo span:nth-child(2) { color: #ea4335; }
+.brand-logo span:nth-child(3) { color: #fbbc05; }
+.brand-logo span:nth-child(4) { color: #4285f4; }
+.brand-logo span:nth-child(5) { color: #34a853; }
+.brand-logo span:nth-child(6) { color: #ea4335; }
+
+/* Ajuste para la caja del buscador del plugin */
+.search-container {
+    width: 100%;
+    max-width: 584px; /* Ancho típico de Google */
+    margin: 0 auto;
+}
+
+/* Forzar estilos al plugin para que parezca Google */
+.asp-search-wrapper { margin: 0 !important; max-width: 100% !important; }
+.asp-input-group {
+    border-radius: 24px !important; /* Bordes muy redondos */
+    border: 1px solid #dfe1e5 !important;
+    box-shadow: none !important;
+    padding: 5px 8px !important;
+}
+.asp-input-group:hover, .asp-input-group:focus-within {
+    box-shadow: 0 1px 6px rgba(32,33,36,.28) !important;
+    border-color: rgba(223,225,229,0) !important;
+}
+
+/* --- RESULTADOS & PAGINAS INTERNAS --- */
+/* Cuando no es la home, el contenido va arriba */
+body.inner-page .main-wrapper {
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+}
+
+.results-header {
+    background: #fff;
+    border-bottom: 1px solid #ebebeb;
+    padding: 20px 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.results-header .small-logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #202124;
+}
+
+.content-area {
+    width: 100%;
+    max-width: 800px; /* Ancho de lectura para resultados */
+    padding: 30px 30px 50px 30px; /* Padding izquierdo para alinear con header */
+    margin-left: 150px; /* Simula margen izquierdo de Google */
+}
+
+/* --- FOOTER --- */
+.site-footer {
+    background: #f2f2f2;
+    color: #70757a;
+    padding: 15px 30px;
+    border-top: 1px solid #dadce0;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .brand-logo { font-size: 50px; }
+    .content-area { margin-left: 0; padding: 20px; max-width: 100%; }
+    .results-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+}
