@@ -3,7 +3,7 @@
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Buscador inteligente de servicios Caticefacil.">
+    <meta name="description" content="<?php bloginfo('description'); ?>">
     <?php wp_head(); ?>
 </head>
 
@@ -17,14 +17,25 @@ $body_class = $is_home ? 'home-centered' : 'inner-page';
 
     <?php if ( $is_home ) : ?>
         <header class="site-header">
-            <?php if(has_nav_menu('primary')) { wp_nav_menu(array('theme_location'=>'primary')); } ?>
-             <a href="#">Gmail</a>
-            <a href="#">Imágenes</a>
+            <?php 
+            wp_nav_menu( array( 
+                'theme_location' => 'header_menu',
+                'container'      => false,
+                'menu_class'     => 'header-nav-list',
+                'fallback_cb'    => false // No mostrar nada si no hay menú asignado
+            ) ); 
+            ?>
         </header>
 
         <main class="main-wrapper">
-            <div class="brand-logo">
-                <span>C</span><span>a</span><span>t</span><span>i</span><span>c</span>e<span>f</span>acit
+            <div class="logo-wrapper">
+                <?php if ( has_custom_logo() ) : ?>
+                    <?php the_custom_logo(); ?>
+                <?php else : ?>
+                    <div class="brand-logo-text">
+                        <span>C</span><span>a</span><span>t</span><span>i</span><span>c</span>e<span>f</span>acil
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="search-container">
@@ -33,16 +44,46 @@ $body_class = $is_home ? 'home-centered' : 'inner-page';
         </main>
 
         <footer class="site-footer">
-            <p>Colombia</p>
+            <div class="footer-location">
+                <?php echo esc_html( get_theme_mod('footer_location_text', 'Colombia') ); ?>
+            </div>
+            <div class="footer-links">
+                 <?php 
+                wp_nav_menu( array( 
+                    'theme_location' => 'footer_menu',
+                    'container'      => false,
+                    'menu_class'     => 'footer-nav-list',
+                    'fallback_cb'    => false
+                ) ); 
+                ?>
+            </div>
         </footer>
 
     <?php else : ?>
         <div class="results-header">
-            <a href="<?php echo home_url(); ?>" class="small-logo">
-                <span style="color:#4285f4">C</span><span style="color:#ea4335">a</span><span style="color:#fbbc05">t</span><span style="color:#4285f4">i</span><span style="color:#34a853">c</span><span style="color:#ea4335">e</span>
-            </a>
-            <div style="flex-grow:1; max-width: 600px;">
+            <div class="small-logo-wrapper">
+                <?php if ( has_custom_logo() ) : ?>
+                    <?php the_custom_logo(); ?>
+                <?php else : ?>
+                    <a href="<?php echo home_url(); ?>" class="small-logo-text">
+                        Caticefacil
+                    </a>
+                <?php endif; ?>
+            </div>
+            
+             <div class="results-search-box">
                 <?php echo do_shortcode('[buscar_paginas]'); ?>
+             </div>
+             
+             <div class="results-menu">
+                <?php 
+                wp_nav_menu( array( 
+                    'theme_location' => 'header_menu',
+                    'container'      => false,
+                    'menu_class'     => 'header-nav-list',
+                    'fallback_cb'    => false
+                ) ); 
+                ?>
              </div>
         </div>
 
@@ -57,6 +98,19 @@ $body_class = $is_home ? 'home-centered' : 'inner-page';
                 ?>
             </div>
         </main>
+
+        <footer class="site-footer inner-footer">
+             <div class="footer-links">
+                 <?php 
+                wp_nav_menu( array( 
+                    'theme_location' => 'footer_menu',
+                    'container'      => false,
+                    'menu_class'     => 'footer-nav-list',
+                    'fallback_cb'    => false
+                ) ); 
+                ?>
+            </div>
+        </footer>
 
     <?php endif; ?>
 
