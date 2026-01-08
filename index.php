@@ -8,8 +8,9 @@
 </head>
 
 <?php
-// Lógica: Si es la HOME -> Diseño centrado vertical
-// Si es cualquier otra página -> Diseño estándar profesional
+// Lógica Principal:
+// 1. Home -> Diseño centrado.
+// 2. Inner Page -> Diseño barra superior.
 $is_home = is_front_page() || is_home();
 $body_class = $is_home ? 'home-centered' : 'inner-page';
 ?>
@@ -54,9 +55,17 @@ $body_class = $is_home ? 'home-centered' : 'inner-page';
                 <?php endif; ?>
             </div>
             
-            <div class="results-search-box">
-                <?php echo do_shortcode('[buscar_paginas]'); ?>
-             </div>
+            <?php 
+             // Obtenemos el ID de la página de resultados desde la configuración del plugin
+             $results_page_id = get_option( 'asp_results_page_id' );
+             
+             // SOLO mostramos el buscador si la página actual es la de resultados
+             if ( $results_page_id && is_page( $results_page_id ) ) : 
+             ?>
+                 <div class="results-search-box">
+                    <?php echo do_shortcode('[buscar_paginas]'); ?>
+                 </div>
+             <?php endif; ?>
              
              <div class="results-menu">
                 <?php 
